@@ -3,10 +3,13 @@ package com.feedfet.backend.serviceImpl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.feedfet.backend.entity.Estado;
 import com.feedfet.backend.repository.EstadoRepository;
 import com.feedfet.backend.service.EstadoService;
 
+@Service
 public class EstadoServiceImpl implements EstadoService {
     
     private final EstadoRepository estadoRepository;
