@@ -19,6 +19,7 @@ public class EstadoServiceImpl implements EstadoService {
     }
 
     @Override
+    
     public List<Estado> getAll() {
         return estadoRepository.findAll();
     }
