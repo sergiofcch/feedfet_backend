@@ -47,5 +47,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.findByEmail(email);
     }
 
-
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario findByEmailAndPassword(String email, String password) {
+        return usuarioRepository.findByEmailAndPassword(email, password);
+    }
 }

@@ -1,8 +1,11 @@
 package com.feedfet.backend.controller;
 
+import java.io.ObjectInputFilter.Status;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,6 +68,17 @@ public class UsuarioController {
     @PostMapping("/delete/{id}")
     public void delete(@RequestBody @Valid Long id) {
         usuarioService.delete(id);
+    }
+
+    //Validacion de usuario y contraseña mediante metodo POST
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Usuario usuario) {
+        Usuario usuarioExistente = usuarioService.findByEmailAndPassword(usuario.getEmail(), usuario.getPassword());
+        if (usuarioExistente != null) {
+            return ResponseEntity.status(HttpStatus.OK).body("Usuario Autorizado"); // OK
+        } else {
+            return ResponseEntity.status(401).build(); // Unauthorized
+        }
     }
 
     
